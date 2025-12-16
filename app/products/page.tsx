@@ -31,7 +31,10 @@ export default function ProdutosPage() {
   const order = ["Melhor avaliado", "Preço mais alto", "Preço mais baixo"];
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedOrder, setSelectedOrder] = useState(order[0]);
+  const [selectedOrder, setSelectedOrder] = useState<{
+    anchorKey: string;
+    currentKey: string;
+  }>({ anchorKey: "0", currentKey: "0" });
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredProducts = useMemo(() => {
