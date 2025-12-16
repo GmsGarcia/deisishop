@@ -60,13 +60,13 @@ export default function ProdutosPage() {
     // Sort products
     switch (selectedOrder.currentKey) {
       case "0":
-        filtered = filtered.sort((a, b) => b.rating - a.rating);
+        filtered = filtered.sort((a, b) => b.rating.rate - a.rating.rate);
         break;
       case "1":
         filtered = filtered.sort((a, b) => b.price - a.price);
         break;
       case "2":
-        filtered = filtered.sort((a, b) => a.price - b.price); // assuming Product has a `rating` field
+        filtered = filtered.sort((a, b) => a.price - b.price);
         break;
     }
 
