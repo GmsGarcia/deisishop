@@ -41,8 +41,7 @@ export default function ProdutosPage() {
 
     // Filter by selected categories
     if (selectedCategories.length > 0) {
-      const filt_categories = selectedCategories.map((c) => categories[c]);
-
+      const filt_categories = selectedCategories.map((c) => categories[c].name);
       filtered = filtered.filter((p: Product) =>
         filt_categories.includes(p.category),
       );
@@ -56,15 +55,15 @@ export default function ProdutosPage() {
     }
 
     // Sort products
-    switch (selectedOrder) {
-      case "Pre�o mais alto":
+    switch (selectedOrder.currentKey) {
+      case "0":
+        filtered = filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      case "1":
         filtered = filtered.sort((a, b) => b.price - a.price);
         break;
-      case "Pre�o mais baixo":
-        filtered = filtered.sort((a, b) => a.price - b.price);
-        break;
-      case "Melhor avaliado":
-        filtered = filtered.sort((a, b) => b.rating - a.rating); // assuming Product has a `rating` field
+      case "2":
+        filtered = filtered.sort((a, b) => a.price - b.price); // assuming Product has a `rating` field
         break;
     }
 
@@ -109,6 +108,7 @@ export default function ProdutosPage() {
           label="Ordenação"
           placeholder="Selecione uma categoria"
           defaultSelectedKeys={"0"}
+          onSelectionChange={(key) => setSelectedOrder(key)}
         >
           {order.map((o: string, i: number) => (
             <SelectItem key={i}>{o}</SelectItem>

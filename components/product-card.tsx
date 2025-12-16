@@ -5,6 +5,7 @@ import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 import { useCart } from "@/hooks/cart";
 import { useState } from "react";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: Product;
@@ -79,6 +80,15 @@ export default function ProductCard({
           </Button>
         </div>
       )}
+
+      <Link href={`/products/${product.id}`}>
+        <Button
+          size="sm"
+          className="bg-black text-background dark:text-foreground"
+        >
+          +INFO
+        </Button>
+      </Link>
     </Card>
   );
 }
